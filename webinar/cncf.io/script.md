@@ -13,7 +13,7 @@
 1. Introductions: Michael and Mark
 2. Data Protection on Kubernetes: Overview
    - Stateful versus stateless: mixed workloads are reality for many
-   - Why backing up /etcd is not a proper strategy
+   - Why backing up etcd is not a proper strategy
    - What is an application consistent backup?
    - How Kanister performs cloud native data protection operations
 3. Demonstration of Kubernetes Data Protection with Kanister.io Blueprints
@@ -155,7 +155,7 @@ The controller detect (in Kubernetes it's more "watch" than detect) the creation
 
 Mi. Ok but that sound complex to create an actionset each time we need to take a backup ?
 
-Ma. No ! Kanister comes with a  tool called kanctl that help you create it, I created the previous object with this command
+Ma. No ! Kanister comes with a tool called kanctl that help you create it, I created the previous object with this command
 ```
 kanctl create actionset --action backup \
    --namespace kasten-io --blueprint mysql-blueprint \
