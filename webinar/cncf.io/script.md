@@ -19,6 +19,7 @@
 3. Demonstration of Kubernetes Data Protection with Kanister.io Blueprints
 4. Conclusions: where to go for more resources
    - https://kanister.io
+     - Today's materials = https://github.com/kanisterio/demo/blob/main/webinar/cncf.io/
    - Kubernetes: SIG-App+SIG-Storage: Data Protection Working Group
    - DoK.community
 
