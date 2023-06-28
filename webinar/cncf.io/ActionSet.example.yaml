@@ -1,0 +1,32 @@
+apiVersion: cr.kanister.io/v1alpha1
+kind: ActionSet
+metadata:
+  name: backup-action-2023-05-24
+  namespace: kanister
+spec:
+  actions:
+  - blueprint: mysql-blueprint
+    name: backup
+    object:
+      apiVersion: ""
+      group: ""
+      kind: statefulset
+      name: mysql-release
+      namespace: mysql-test
+      resource: ""
+    preferredVersion: ""
+    profile:
+      apiVersion: ""
+      group: ""
+      kind: ""
+      name: s3-profile-s2zpc
+      namespace: mysql-test
+      resource: ""
+    secrets:
+      mysql:
+        apiVersion: ""
+        group: ""
+        kind: ""
+        name: mysql-release
+        namespace: mysql-test
+        resource: ""

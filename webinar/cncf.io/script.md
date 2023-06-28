@@ -23,13 +23,13 @@
    - DoK.community
 
 # Talk and Demonstration
-Mi. Hey Ma, I know that you are in charge of Kanister, I heard Kanister is a framework for datamanagement in Kubernetes, but I'm not sure to understand why we need a framework for that ?
+Mi. Hey Ma, I know that you are in charge of Kanister, I heard Kanister is a framework for data management in Kubernetes, but I'm not sure to understand why we need a framework for that ?
 
-Ma. Sure Kanister solve the problem of datamanagement on kubernetes, because data management on kubernetes is not obvious as it seems.
+Ma. Sure Kanister solve the problem of data management on Kubernetes, because data management on Kubernetes is not obvious as it seems.
 
 Mi. Why that ? Can you give me an example
 
-Ma. Let's say you have a mysql database deployed on kubernetes and you want to backup this database. First you'll have to open the secret attached to this database and obtain the root password, you also have to discover the service to connect to : the port and the url. How are you going to connect to this url ? You can do a port-forward to expose the mysql port in your laptop but this is unstable and you also need to have a mysqldump client locally so you'd better take the approach of executing mysqldump on the mysql pod or on a client pod that you spin up just for this reason. Whatever the solution you take, then you'll have to manage a dump, you need to export this dump to a backup location for instance S3 or a google bucket, and you want to have freedom of choice on this matter. For security reason you decide to encrypt this dump at rest because you don't trust by default the security on the s3 bucket, now you need to encrypt with solid and proven tool and also manage an encryption key. Most likely the tools needed for this won't be available on the mysql pod so you have to spin up a pod with the required tool. Then come the management of your backup, how do you keep track of all your backups. How do you manage their deletion or their restoration, will you repeat all this operations ? Now most likeley you have more than one database deployed on this clusters or deployed on several clusters. How do you capture and share all this knowledge accross your teams, your clusters and your namespaces...
+Ma. Let's say you have a mysql database deployed on Kubernetes and you want to backup this database. First you'll have to open the secret attached to this database and obtain the root password, you also have to discover the service to connect to : the port and the url. How are you going to connect to this url ? You can do a port-forward to expose the mysql port in your laptop but this is unstable and you also need to have a mysqldump client locally so you'd better take the approach of executing mysqldump on the mysql pod or on a client pod that you spin up just for this reason. Whatever the solution you take, then you'll have to manage a dump, you need to export this dump to a backup location for instance S3 or a google bucket, and you want to have freedom of choice on this matter. For security reason you decide to encrypt this dump at rest because you don't trust by default the security on the s3 bucket, now you need to encrypt with solid and proven tool and also manage an encryption key. Most likely the tools needed for this won't be available on the mysql pod so you have to spin up a pod with the required tool. Then come the management of your backup, how do you keep track of all your backups. How do you manage their deletion or their restoration, will you repeat all this operations ? Now most likely you have more than one database deployed on this clusters or deployed on several clusters. How do you capture and share all this knowledge across your teams, your clusters and your namespaces...
 
 Mi. I didn't no see it this way but this is true that's going to be a problem if you have a strong repetition of the same deployment with few parameters that change. We may try to write a quick and dirty bash script ? What do you think I know that "quick and dirty" is not popular today but I can try :)
 
@@ -38,18 +38,18 @@ Ma. When it comes to data management "quick and dirty" is not a good idea if you
 Mi. You have examples ?
 
 Ma. Sure, for instances :
-- how do you switch from s3 to azure blob without changing the code ?
+- how do you switch from S3 to Azure blob without changing the code ?
 - how do you follow up the progression of an action knowing that your internet connection may be cut ?
-- how do retreive in a consistent manner credentials of your backup location ?
-- how do you manage incremental backup of your pvc ?
+- how do retrieve in a consistent manner credentials of your backup location ?
+- how do you manage incremental backup of your PVC ?
 - how do you wait for a scale down or a scale up operation, how do you wait for a status before switching to the next action ?
 - how do you logs all the operations in a single place ?
-- how do you discover the content of a secret , of a deployement or any object without using ugly and not maintainable jsonpath explression like '.metadata.annotations.kubenetes\.io/hostname}'
+- how do you discover the content of a secret, deployment, or any object without using ugly and not maintainable jsonpath explression like '.metadata.annotations.kubenetes\.io/hostname}'
 ....
 
 Mi. Ok I think you convince me. So ok let's say I want to use this framework Kanister can you give an overview of how it works
 
-Ma. It's basically the operator pattern you create an action that has parameters and a blueprint, then the operator execute the blueprint with the parmameters. Whatever the result success or failure the operator update the status of the action. You'll be able to work again with this status to restore or delete the backup.
+Ma. It's basically the operator pattern you create an action that has parameters and a blueprint, then the operator execute the blueprint with the parameters. Whatever the result success or failure the operator update the status of the action. You'll be able to work again with this status to restore or delete the backup.
 
 Mi. Do you have like a diagram so that I can understand in a more sequential way ?
 
@@ -58,7 +58,7 @@ Ma. Sure let's take the example of mysql .... <comment on the diagram>
 
 Mi. Ok can you show me an example of an actionset ?
 
-Ma.
+Ma. [ActionSet.example.yaml](ActionSet.example.yaml)
 ```
 apiVersion: cr.kanister.io/v1alpha1
 kind: ActionSet
@@ -104,7 +104,8 @@ the blueprint
 ```
 blueprint: mysql-blueprint
 ```
-which  is a sort of library of actions that you create for your operations related to mysql.
+which is a sort of library of actions that you create for your operations related to mysql.
+- https://github.com/kanisterio/kanister/tree/master/examples/mysql
 
 the action
 ```
@@ -149,7 +150,7 @@ the secrets
 ```
 That you need to work with for executing your operations, for instance connecting to the database.
 
-The controller detect (in kubernetes it's more "watch" than detect) the creation of the actionset and execute the blueprint actions on the object and the secrets.
+The controller detect (in Kubernetes it's more "watch" than detect) the creation of the actionset and execute the blueprint actions on the object and the secrets.
 
 Mi. Ok but that sound complex to create an actionset each time we need to take a backup ?
 
@@ -247,8 +248,8 @@ spec:
         namespace: mysql-test
         resource: ""
 ```
-You see an artifacts section is there now. The output artifacts of the previous actionset is becomed the input artifcat of the new action. This way the restore action can consume the dump on the s3 profile and execute the restoration.
+You see an artifacts section is there now. The output artifacts of the previous actionset becomes the input artifact of the new action. This way the restore action can consume the dump on the s3 profile and execute the restoration.
 
-Mi. I start to get the idea this is really prowerful to write quickly datamanagement operations. But I really wonder how you define a blueprint.
+Mi. I start to get the idea this is really powerful to write quickly data management operations. But I really wonder how you define a blueprint.
 
 Ma. Ah, let's speak about that in the next video.
