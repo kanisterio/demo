@@ -1,4 +1,28 @@
+# Overview
+- Title: Kubernetes Data Protection Requires Orchestration: Kanister.io Delivers
+- What will be covered: How the open source project Kanister.io solves the need to extend past infrastructure backups to application orchestration and recovery of databases and persistent workloads on Kubernetes.
+- Why the reader should attend: To address the challenge of Kubernetes disaster recovery and adopt the value of Kanister blueprints for automated data protection.
+- What reader will learn: How to automate data protection with Kanister blueprints.
+- Actionable takeaways:
+  - Understand the goals of disaster recovery and why Kubernetes is the ideal infrastructure
+  - Understand Kubernetes persistent workloads and their challenges: the different types of backups
+  - Understand how Kanister.io automation solves those challenges
+  - See a Kanister.io blueprint in action: application consistent backup and recovery of an open source database
 
+# Agenda
+1. Introductions: Michael and Mark
+2. Data Protection on Kubernetes: Overview
+   - Stateful versus stateless: mixed workloads are reality for many
+   - Why backing up /etcd is not a proper strategy
+   - What is an application consistent backup?
+   - How Kanister performs cloud native data protection operations
+3. Demonstration of Kubernetes Data Protection with Kanister.io Blueprints
+4. Conclusions: where to go for more resources
+   - https://kanister.io
+   - Kubernetes: SIG-App+SIG-Storage: Data Protection Working Group
+   - DoK.community
+
+# Talk and Demonstration
 Mi. Hey Ma, I know that you are in charge of Kanister, I heard Kanister is a framework for datamanagement in Kubernetes, but I'm not sure to understand why we need a framework for that ?
 
 Ma. Sure Kanister solve the problem of datamanagement on kubernetes, because data management on kubernetes is not obvious as it seems.
@@ -30,6 +54,7 @@ Ma. It's basically the operator pattern you create an action that has parameters
 Mi. Do you have like a diagram so that I can understand in a more sequential way ?
 
 Ma. Sure let's take the example of mysql .... <comment on the diagram>
+- https://github.com/kanisterio/kanister/tree/master/examples/mysql
 
 Mi. Ok can you show me an example of an actionset ?
 
