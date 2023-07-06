@@ -10,7 +10,7 @@
   - See a Kanister.io blueprint in action: application consistent backup and recovery of an open source database
 
 # Agenda (Slide 2)
-[Slides](https://veeamsoftwarecorp-my.sharepoint.com/:p:/g/personal/mark_lavi_veeam_com/EfR8pfcjwIRLtPktAsDL8aYBuJ6HTmoUMYWFzBKAkfpaxQ?e=9BuusL)
+[Slides](httpsetcetc//veeamsoftwarecorp-my.sharepoint.com/:p:/g/personal/mark_lavi_veeam_com/EfR8pfcjwIRLtPktAsDL8aYBuJ6HTmoUMYWFzBKAkfpaxQ?e=9BuusL)
 
 1. Introductions: Michael and Mark
 2. Data Protection on Kubernetes: Overview
@@ -65,8 +65,9 @@ Now we can add the artifact and the backup location in the picture
 
 Mi. Ok can you show me an example of an actionset ?
 
-Ma. [ActionSet.example.yaml](ActionSet.example.yaml)
-```
+Ma.  [ActionSet.example.yaml](ActionSet.example.yaml) all of these materials are available at https://github.com/kanisterio/demo/tree/main/webinar/cncf.io/
+
+```yaml
 apiVersion: cr.kanister.io/v1alpha1
 kind: ActionSet
 metadata:
@@ -121,7 +122,7 @@ name: backup
 you invoke in the blueprint
 
 the object
-```
+```yaml
 object:
       apiVersion: ""
       group: ""
@@ -133,7 +134,7 @@ object:
 on which you apply this action
 
 the profile
-```
+```yaml
     profile:
       apiVersion: ""
       group: ""
@@ -145,7 +146,7 @@ the profile
 Which is where you want to send your backup
 
 the secrets
-```
+```yaml
    secrets:
       mysql:
         apiVersion: ""
@@ -162,7 +163,7 @@ The controller detect (in Kubernetes it's more "watch" than detect) the creation
 Mi. Ok but that sound complex to create an actionset each time we need to take a backup ?
 
 Ma. No ! Kanister comes with a tool called kanctl that help you create it, I created the previous object with this command
-```
+```shell
 kanctl create actionset --action backup \
    --namespace kasten-io --blueprint mysql-blueprint \
    --statefulset mysql-test/mysql-release \
@@ -181,14 +182,14 @@ Ma. No that's the advantage of working with a framework, you don't need to chang
 Mi. Ok, let's say that now I have created the actionset then what, how do I know if it's successful and how can I know where is my backup
 
 Ma. All this information is in the action set
-```
+```shell
 kubectl get actionset
 NAME           PROGRESS   RUNNING PHASE   LAST TRANSITION TIME   STATE
 backup-t4sqb   10.00                      2023-05-24T09:54:57Z   complete
 ```
 
 You see the state is complete which means the execution was successful and if you need to know where is the backup check the artifacts section of the status
-```
+```shell
 kubectl get actionset backup-t4sqb -oyaml |grep -i artifacts -A3 -B2
 status:
   actions:
@@ -202,7 +203,7 @@ This part is what we called the output artifacts.
 Mi. Ok but if I need to restore I guess that I have to recreate another actionset, but how can I pass this "s3path" to the actionset
 
 Ma. You're right to restore you need to create another actionset with the action "restore" and with all the information contained in the actionset kanctl will create the appropriate actionset
-```
+```shell
 kanctl --namespace kanister create actionset --action restore --from "backup-t4sqb"
 actionset restore-backup-t4sqb-dsvr9 created
 ```
@@ -210,7 +211,7 @@ actionset restore-backup-t4sqb-dsvr9 created
 Mi. Did it work?
 
 Ma. Let's see
-```
+```shell
 kubectl get actionset
 NAME                         PROGRESS   RUNNING PHASE   LAST TRANSITION TIME   STATE
 backup-t4sqb                 10.00                      2023-05-24T09:54:57Z   complete
@@ -221,7 +222,7 @@ Yes the restore has been working fine as well ! You see it creates like an histo
 Mi. Hey, let me see the content of the restore ?
 
 Ma.
-```
+```yaml
 kubectl get action set restore-backup-t4sqb-dsvr9 -o yaml
 spec:
   actions:
