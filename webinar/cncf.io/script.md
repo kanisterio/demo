@@ -1,5 +1,5 @@
 # Overview
-- Title: Kubernetes Data Protection Requires Orchestration: Kanister.io Delivers
+- Title: Kubernetes Data Protection Requires Orchestration: Kanister.io Delivers (Slide 1)
 - What will be covered: How the open source project Kanister.io solves the need to extend past infrastructure backups to application orchestration and recovery of databases and persistent workloads on Kubernetes.
 - Why the reader should attend: To address the challenge of Kubernetes disaster recovery and adopt the value of Kanister blueprints for automated data protection.
 - What reader will learn: How to automate data protection with Kanister blueprints.
@@ -9,19 +9,21 @@
   - Understand how Kanister.io automation solves those challenges
   - See a Kanister.io blueprint in action: application consistent backup and recovery of an open source database
 
-# Agenda
+# Agenda (Slide 2)
+[Slides](https://veeamsoftwarecorp-my.sharepoint.com/:p:/g/personal/mark_lavi_veeam_com/EfR8pfcjwIRLtPktAsDL8aYBuJ6HTmoUMYWFzBKAkfpaxQ?e=9BuusL)
+
 1. Introductions: Michael and Mark
 2. Data Protection on Kubernetes: Overview
    - Stateful versus stateless: mixed workloads are reality for many
    - Why backing up etcd is not a proper strategy
    - What is an application consistent backup?
    - How Kanister performs cloud native data protection operations
-3. Demonstration of Kubernetes Data Protection with Kanister.io Blueprints
+3. Discussion and Demonstration of Kubernetes Data Protection with Kanister.io Blueprints
 4. Conclusions: where to go for more resources
    - https://kanister.io
      - Today's materials = https://github.com/kanisterio/demo/blob/main/webinar/cncf.io/
-   - Kubernetes: SIG-App+SIG-Storage: Data Protection Working Group
-   - DoK.community
+   - Kubernetes: SIG-App+SIG-Storage: [Data Protection Working Group](https://www.kubernetes.dev/community/community-groups/#working-groups)
+   - https://DoK.community
 
 # Talk and Demonstration
 Mi. Hey Ma, I know that you are in charge of Kanister, I heard Kanister is a framework for data management in Kubernetes, but I'm not sure to understand why we need a framework for that ?
@@ -45,7 +47,7 @@ Ma. Sure, for instances :
 - how do you manage incremental backup of your PVC ?
 - how do you wait for a scale down or a scale up operation, how do you wait for a status before switching to the next action ?
 - how do you logs all the operations in a single place ?
-- how do you discover the content of a secret, deployment, or any object without using ugly and not maintainable jsonpath explression like '.metadata.annotations.kubenetes\.io/hostname}'
+- how do you discover the content of a secret, deployment, or any object without using ugly and not maintainable JSONpath explression like '.metadata.annotations.kubenetes\.io/hostname}'
 ....
 
 Mi. Ok I think you convince me. So ok let's say I want to use this framework Kanister can you give an overview of how it works
@@ -201,11 +203,11 @@ kanctl --namespace kanister create actionset --action restore --from "backup-t4s
 actionset restore-backup-t4sqb-dsvr9 created
 ```
 
-Mi. Did it work ?
+Mi. Did it work?
 
 Ma. Let's see
 ```
-k get actionset
+kubectl get actionset
 NAME                         PROGRESS   RUNNING PHASE   LAST TRANSITION TIME   STATE
 backup-t4sqb                 10.00                      2023-05-24T09:54:57Z   complete
 restore-backup-t4sqb-dsvr9   10.00                      2023-05-24T13:30:22Z   complete
@@ -216,7 +218,7 @@ Mi. Hey, let me see the content of the restore ?
 
 Ma.
 ```
-k get action set restore-backup-t4sqb-dsvr9 -o yaml
+kubectl get action set restore-backup-t4sqb-dsvr9 -o yaml
 spec:
   actions:
   - artifacts:
