@@ -57,7 +57,11 @@ Ma. It's basically the operator pattern you create an action that has parameters
 Mi. Do you have like a diagram so that I can understand in a more sequential way ?
 
 Ma. Sure let's take the example of mysql .... <comment on the diagram>
-- https://github.com/kanisterio/kanister/tree/master/examples/mysql
+![Kanister diagram sequence without artifact](./kanister-sequence-diagram-with-blueprint-and-mysql.drawio.png)
+
+Now we can add the artifact and the backup location in the picture 
+
+![Kanister diagram sequence with artifact](./kanister-sequence-diagram-with-blueprint-and-mysql-and-artifact.drawio.png)
 
 Mi. Ok can you show me an example of an actionset ?
 
