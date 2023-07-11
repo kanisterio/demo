@@ -10,7 +10,7 @@
   - See a Kanister.io blueprint in action: application consistent backup and recovery of an open source database
 
 # Agenda (Slide 2)
-[Slides](httpsetcetc//veeamsoftwarecorp-my.sharepoint.com/:p:/g/personal/mark_lavi_veeam_com/EfR8pfcjwIRLtPktAsDL8aYBuJ6HTmoUMYWFzBKAkfpaxQ?e=9BuusL)
+[Slides](https://veeamsoftwarecorp-my.sharepoint.com/:p:/g/personal/mark_lavi_veeam_com/EfR8pfcjwIRLtPktAsDL8aYBuJ6HTmoUMYWFzBKAkfpaxQ?e=9BuusL)
 
 1. Introductions: Michael and Mark
 2. Data Protection on Kubernetes: Overview
