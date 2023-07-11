@@ -1,3 +1,4 @@
 oc
 .env
 *.ignore*
+.DS_Store
