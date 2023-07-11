@@ -47,7 +47,7 @@ Ma. Sure, for instances :
 - how do you manage incremental backup of your PVC ?
 - how do you wait for a scale down or a scale up operation, how do you wait for a status before switching to the next action ?
 - how do you logs all the operations in a single place ?
-- how do you discover the content of a secret, deployment, or any object without using ugly and not maintainable JSONpath explression like '.metadata.annotations.kubenetes\.io/hostname}'
+- how do you discover the content of a secret, deployment, or any object without using ugly and not maintainable JSONpath expression like '.metadata.annotations.kubenetes\.io/hostname}'
 ....
 
 Mi. Ok I think you convince me. So ok let's say I want to use this framework Kanister can you give an overview of how it works
@@ -59,7 +59,7 @@ Mi. Do you have like a diagram so that I can understand in a more sequential way
 Ma. Sure let's take the example of mysql .... <comment on the diagram>
 ![Kanister diagram sequence without artifact](./kanister-sequence-diagram-with-blueprint-and-mysql.drawio.png)
 
-Now we can add the artifact and the backup location in the picture 
+Now we can add the artifact and the backup location in the picture
 
 ![Kanister diagram sequence with artifact](./kanister-sequence-diagram-with-blueprint-and-mysql-and-artifact.drawio.png)
 
@@ -260,4 +260,4 @@ You see an artifacts section is there now. The output artifacts of the previous 
 
 Mi. I start to get the idea this is really powerful to write quickly data management operations. But I really wonder how you define a blueprint.
 
-Ma. Ah, let's speak about that in the next video.
+Ma. Ah, let's speak about that next...
