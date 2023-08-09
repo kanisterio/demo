@@ -8,6 +8,11 @@
   - Understand Kubernetes persistent workloads and their challenges: the different types of backups
   - Understand how Kanister.io automation solves those challenges
   - See a Kanister.io blueprint in action: application consistent backup and recovery of an open source database
+- Title: How the Kanister.io Project Orchestrates Kubernetes Data Protection
+  - Abstract:
+The open source Kanister.io project extends infrastructure backups to application orchestration and recovery of databases and persistent workloads on Kubernetes. Operators, logical, and system backup methods are not a panacea for application consistent backup and recovery with efficient resource management of time, security, and storage. Kanister.io blueprint automation addresses the gaps of each while also coordinating external systems as needed. We'll demonstrate a simple application consistent backup and recovery of an open source database hosted on Kubernetes with Kanister and conclude with how to adopt and join the project.
+  - Benefits to the Ecosystem:
+As databases and persistent workloads hosted on Kubernetes grows, cloud native data protection is needed to address the gaps of traditional backup and recovery solutions. While there are many open source and commercial offerings in the market, many automate backups with scripting and cron, addressing only the first step of data protection. What if there was a cloud-native controller, installed by Helm chart, that could drive data protection operations with a community of blueprints ready to be consumed and adopted by the entire industry, regardless of vendor or provider? Kanister replaces bespoke efforts with an extensible framework to manage data protection operations.
 
 # Agenda (Slide 2)
 [Slides](https://veeamsoftwarecorp-my.sharepoint.com/:p:/g/personal/mark_lavi_veeam_com/EfR8pfcjwIRLtPktAsDL8aYBuJ6HTmoUMYWFzBKAkfpaxQ?e=9BuusL)
